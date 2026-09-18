@@ -82,21 +82,15 @@ scheduler.add_job(
     replace_existing=True
 )
 
+print("Fetching news...")
+fetch_all_news()
+
+scheduler.start()
+
+print("News scheduler started.")
+print("News will be updated every 5 minutes.")
+
 if __name__ == "__main__":
-    print("Fetching news...")
-    fetch_all_news()
+  app.run(debug=True,use_reloader=False)
 
-    scheduler.start()
-
-    print("News scheduler started.")
-    print("News will be updated every 5 minutes.")
-
-    try:
-        app.run(
-            debug=True,
-            use_reloader=False
-        )
-
-    finally:
-        scheduler.shutdown()
-        print("Scheduler stopped.")
+        
