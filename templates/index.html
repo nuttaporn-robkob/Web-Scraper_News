@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <meta http-equiv="refresh" content="300">
+    <title>News Dashboard</title>
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            NR NewsHub
+        </div>
+        <div class="nav-right">
+            <span>
+                NR News
+            </span>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>
+            NR News
+        </h1>
+        <p>
+            News collected from multiple sources
+        </p>
+    </header>
+
+    <section class="filter-section">
+        <form
+            method="GET"
+            action="/"
+            class="filter-form"
+        >
+            <div class="search-box">
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Search news..."
+                    value="{{ search }}"
+                >
+                <button type="submit">
+                    Search
+                </button>
+            </div>
+
+            <div class="category-box">
+                <select
+                    name="category"
+                    onchange="this.form.submit()"
+                >
+                    <option value="">
+                        All Categories
+                    </option>
+                    {% for cat in categories %}
+                    <option
+                        value="{{ cat['category'] }}"
+                        {% if selected_category == cat['category'] %}
+                        selected
+                        {% endif %}
+                    >
+                        {{ cat['category'] }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </form>
+    </section>
+
+    <main class="container">
+        {% if news_list %}
+            <div class="news-grid">
+                {% for news in news_list %}
+                <article class="news-card">
+                    <div class="news-image">
+                        {% if news['image'] %}
+                        <img
+                            src="{{ news['image'] }}"
+                            alt="{{ news['title'] }}"
+                            loading="lazy"
+                        >
+                        {% else %}
+                        <div class="no-image">
+                            No Image
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="news-content">
+                        <span class="category">
+                            {{ news['category'] }}
+                        </span>
+                        <h2>
+                            {{ news['title'] }}
+
+                        </h2>
+
+                        {% if news['description'] %}
+                        <p class="description">
+                            {{ news['description'][:250] }}
+                            {% if news['description']|length > 250 %}
+                            ...
+                            {% endif %}
+                        </p>
+                        {% else %}
+                        <p class="description">
+                            No description available.
+                        </p>
+                        {% endif %}
+
+                        <div class="news-footer">
+                            <span class="date">
+                                {{ news['pubDate'] }}
+                            </span>
+                            <a
+                                href="{{ news['link'] }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="read-more"
+                            >
+                                Read Article →
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-results">
+                <h2>
+                    No news found
+                </h2>
+                <p>
+                    Try another search or category.
+                </p>
+            </div>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>
+            NewsHub — Python Flask News Dashboard
+        </p>
+    </footer>
+</body>
+</html>

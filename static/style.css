@@ -1,0 +1,258 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #222;
+    line-height: 1.6;
+}
+
+.navbar {
+    height: 70px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    border-bottom: 1px solid #e5e5e5;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-right {
+    color: #666;
+}
+
+.hero {
+    text-align: center;
+    padding: 55px 20px 35px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: #777;
+    font-size: 17px;
+}
+
+.filter-section {
+    width: 86%;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+}
+
+.filter-form {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.search-box {
+    display: flex;
+    flex: 1;
+    max-width: 650px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 13px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px 0 0 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #777;
+}
+
+.search-box button {
+    border: none;
+    padding: 0 22px;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    background: #222;
+    color: white;
+    font-size: 15px;
+}
+
+.category-box select {
+    padding: 13px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.container {
+    width: 86%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+    gap: 25px;
+}
+
+.news-card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    transition:
+        transform 0.25s,
+        box-shadow 0.25s;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 12px 30px
+        rgba(0, 0, 0, 0.08);
+}
+
+.news-image {
+    width: 100%;
+    height: 210px;
+    overflow: hidden;
+    background: #eee;
+}
+
+.news-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.no-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    background: #eee;
+}
+
+.news-content {
+    padding: 20px;
+}
+
+.category {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #eee;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.news-content h2 {
+    font-size: 19px;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.description {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 67px;
+}
+
+.news-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.date {
+    font-size: 12px;
+    color: #999;
+    flex: 1;
+}
+
+.read-more {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    color: #222;
+    white-space: nowrap;
+}
+.read-more:hover {
+    text-decoration: underline;
+}
+
+.no-results {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.no-results h2 {
+    margin-bottom: 10px;
+}
+.no-results p {
+    color: #777;
+}
+
+footer {
+    text-align: center;
+    padding: 50px 20px;
+    margin-top: 50px;
+    color: #888;
+    font-size: 13px;
+}
+
+@media (max-width: 900px) {
+    .news-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+    .filter-form {
+        flex-direction: column;
+    }
+    .search-box {
+        max-width: none;
+    }
+    .category-box select {
+        width: 100%;
+    }
+    .news-grid {
+        grid-template-columns: 1fr;
+
+    }
+    .container,
+    .filter-section {
+        width: 92%;
+    }
+}
